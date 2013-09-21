@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Zend Framework (http://framework.zend.com/)
  *
@@ -10,17 +11,17 @@
 namespace Application\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+//use Zend\View\Model\ViewModel;
 use Application\Model\Db;
 
-class IndexController extends AbstractActionController
-{
-    public function indexAction()
-    {
-       $db = new Db();
-       $data = $db->getTableGateway('tva')->update(array('tva' => 1), 'tva_id = 3');
-     
-       print_r($data); die();
-       return new ViewModel();
+class IndexController extends AbstractActionController {
+
+    public function indexAction() {
+        $db = new Db();
+        //$data = $db->getTableGateway('contact')->select();
+        $data = $db->getPDO()->query('select * from contact')->fetchAll();
+        
+        return array('data' => $data);
     }
+
 }
