@@ -9,14 +9,20 @@ use Zend\Db\Sql\Sql;
 class Db {
  public $config = array(
             'driver' => 'pdo_mysql',
-            'database' => 'karudev',
+            'database' => 'zend2',
             'username' => 'root',
             'password' => 'root',
             'host' => 'localhost'
         ); 
     public $adapter;
+    
+    /**
+     * 
+     * @return \Zend\Authentication\Adapter\AdapterInterface
+     */
     public function __construct() {
        $this->adapter =  new Adapter($this->config);
+       return $this->adapter;
     }
     public  function getTableGateway($table) {
        return new TableGateway($table,$this->adapter); 

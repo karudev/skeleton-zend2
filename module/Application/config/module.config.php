@@ -17,7 +17,27 @@ return array(
                     'defaults' => array(
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
-                    ),
+                    )
+                ),
+            ), 
+            'install' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/install',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Install',
+                        'action'     => 'index',
+                    )
+                ),
+            ),
+             'account_add' => array(
+                'type' => 'Zend\Mvc\Router\Http\Literal',
+                'options' => array(
+                    'route'    => '/secured/account/add',
+                    'defaults' => array(
+                        'controller' => 'Application\Controller\Account',
+                        'action'     => 'add',
+                    )
                 ),
             ),
             // The following is a route to simplify getting started creating
@@ -73,7 +93,10 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Install' => 'Application\Controller\InstallController',
+            'Application\Controller\Login' => 'Application\Controller\LoginController',
+             'Application\Controller\Account' => 'Application\Controller\AccountController'
         ),
     ),
     'view_manager' => array(
