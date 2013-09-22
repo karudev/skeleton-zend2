@@ -19,8 +19,13 @@ class IndexController extends AbstractActionController {
     public function indexAction() {
         $db = new Db();
         //$data = $db->getTableGateway('contact')->select();
-        $data = $db->getPDO()->query('select * from contact')->fetchAll();
-        
+        //$data = $db->getPDO()->query('select * from contact')->fetchAll();
+        $sql = $db->getSql();
+        $select = $sql->select('contact');
+        //$data = $sql->prepareStatementForSqlObject($select)->execute();
+        // $data = $sql->getSqlStringForSqlObject($select);
+        $data = $db->getAdapter()->query('select * from contact')->execute();
+        print_r($data); die();
         return array('data' => $data);
     }
 
